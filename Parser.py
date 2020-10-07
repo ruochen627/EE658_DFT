@@ -52,7 +52,7 @@ def verilog_parser(filename):
             line_syntax = re.match(r'\s*(.+?) (.+?)\s*\((.*)\s*\);$', line, re.IGNORECASE)
             if line_syntax:
                 if line_syntax.group(1) == 'module':
-                    Ckt.name = line_syntax.group(2)
+                    Circuit.circuit_name = line_syntax.group(2).replace(' ', '')
 
                 else:
                     gate_order = line_syntax.group(3).replace(' ', '').split(',')

@@ -1,7 +1,7 @@
 class Node:
 	def __init__(self, name: str, type:str):
 		self.name = name  # Node name
-		# Gate Type: ipt, not, nand, and, nor, or, xor, xnor, buff
+		# Gate Type: ipt, opt, not, nand, and, nor, or, xor, xnor, buff
 		self.gate_type = type  # Indicate which logic gate type this node is
 		self.fan_in_node = []  # The list of fan-in nodes
 		self.fan_out_node = []  # The list of fan-out nodes
@@ -29,7 +29,6 @@ class Ckt:
 		self.node_name_list = [] # Name Information
 		self.PI = []  # Primary input
 		self.PO = []  # Primary output
-		self.KI = []  # Key input
 		self.PI_count = 0 # IPT numbers
 		self.PO_count = 0 #PO numbers
 		self.node_count = 0 # How many nodes in the circuit
@@ -59,8 +58,13 @@ class Ckt:
 		self.PO.remove(obj)
 
 	def pc(self):
+		print('Circuit Name: ', self.circuit_name)
+		print('Total PI:', self.PI_count)
+		print('Total PO:', self.PO_count)
+		print('Total Nodes:', self.node_count)
+		print('#################### Node Information ####################')
 		for obj in self.node_list:
-			print(obj.name)
+			print(obj.name + '(' + obj.gate_type + ')')
 			print('fan_in:', end= ' ')
 			for fi in obj.fan_in_node:
 				print(fi.name, end= ' ')
